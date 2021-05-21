@@ -37,11 +37,13 @@ class DataArea extends Component {
     }
 
     filterByMale = () => {
-        // issue with state?
+        // issue with state? filtering properly
         let employees = [...this.state.employees];
         console.log("click");
-        employees.filter(employee => employee.gender === "male");
-        this.setState({employees});
+        let filterEmployees = employees.filter(employee => employee.gender === "male")
+        console.log(filterEmployees);
+        this.setState({employees: filterEmployees});
+        console.log(this.state);
     }
 
   render() {
