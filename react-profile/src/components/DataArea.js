@@ -4,7 +4,7 @@ class DataArea extends Component {
     state = {
         employees: [],
         sortBy: null,
-        // filterBy: ""
+        filterBy: ""
     };
     componentDidMount () {
         fetch ("https://randomuser.me/api/?results=10")
@@ -46,6 +46,20 @@ class DataArea extends Component {
         console.log(this.state);
     }
 
+    filterByFemale = () => {
+        
+        let employees = [...this.state.employees];
+        console.log("click");
+        let filterEmployees = employees.filter(employee => employee.gender === "female")
+        console.log(filterEmployees);
+        this.setState({employees: filterEmployees});
+        console.log(this.state);
+    }
+
+    filteredEmployees = () => {
+
+    }
+
   render() {
     if (!this.state.employees.length) {
         return <div>Loading...</div>
@@ -56,6 +70,7 @@ class DataArea extends Component {
             <button onClick={this.sortByName}>Sort By Name</button>
             <button onClick={this.sortByCity}>Sort By City</button>
             <button onClick={this.filterByMale}>Male</button>
+            <button onClick={this.filterByFemale}>Female</button>
             <table>
                 <tr><th></th><th>Name:</th><th>City:</th><th>Gender:</th></tr>
                 {this.state.employees.map(emp => (
